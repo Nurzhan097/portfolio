@@ -64,7 +64,7 @@ class ProductAdmin(admin.ModelAdmin):
 	list_display = [
 		'name',
 		'slug',
-		'category',
+		# 'category',
 		'image',
 		'url',
 		'is_active',

@@ -114,8 +114,9 @@ class CompanyInfo(models.Model):
 
 class Product(models.Model):
 	name = models.CharField(max_length=40, verbose_name='Название')
+	short_description = models.CharField(max_length=40, verbose_name="Краткое описание")
 	slug = models.SlugField(verbose_name='Краткое название', help_text="Ссылка")
-	category = models.ForeignKey(ProductCategory, on_delete=models.CASCADE,)
+	category = models.ManyToManyField(ProductCategory)
 	image = models.ImageField(upload_to='site_preview')
 	url = models.URLField()
 

@@ -1,0 +1,55 @@
+<!--== Contact Form Start ==-->
+<section class="dark-bg pb-30">
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-8 section-heading">
+				<h5 class="default-color text-uppercase">Contact</h5>
+				<h2 class="play-font white-color font-700">Contact form coming soon... <span
+						class="default-color">This service</span> in Develop</h2>
+			</div>
+			
+		<form action="" method="post" role="form" class="php-email-form">
+			<!--						{{contact_form_in_all_page}}-->
+			<!-- Ошибки не связанныене с полями -->
+			{% for e in contact_form_in_all_page.non_field_errors %}
+			<div class="alert alert-danger">{{e}}</div>
+			{% endfor %}
+			<!-- /Ошибки не связанныене с полями -->
+			
+			<div class="form-row">
+				{% for field in contact_form_in_all_page %}
+				<div class=" form-group col-md-6 {% if field.errors %} alert-danger{% endif %}">
+					<!--Ошибки в поле-->
+					{% if field.errors %}
+					<ol>
+						{% for error in field.errors %}
+						<li>{{error|escape}}</li>
+						{% endfor %}
+					</ol>
+					{% endif %}
+					<!--/Ошибки в поле-->
+					
+					<!--Данные в полях-->
+					<div class="controls">
+						{{ field.label }}
+						{{ field }}
+					</div>
+					<!--/Ошибки в полях-->
+				</div>
+				{% endfor %}
+			</div>
+			
+			{% for hidden in contact_form_in_all_page.hidden_fields %}
+			{{hidden}}
+			{% endfor %}
+			
+			<div class="text-center">
+				<button type="submit">Send Message</button>
+			</div>
+		
+		</form>
+		</div>
+	
+	</div>
+</section>
+<!--== Contact Form End ==-->

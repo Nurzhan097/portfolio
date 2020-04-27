@@ -6,6 +6,7 @@ Hello
 {% endblock %}
 
 {% block content %}
+
 <!--== Particle Slider Start ==-->
 <section class="remove-padding transition-none">
 	<div id="rev_slider_4_1_wrapper" class="rev_slider_wrapper fullscreen-container" data-alias="particle-effect-one5"
@@ -438,25 +439,38 @@ Hello
 				<div id="portfolio-gallery" class="cbp hover-type-2">
 					
 					{% for product in products %}
-					<div class="cbp-item {{product.slug}} col-md-3 col-sm-6 with-spacing">
+					<div class="cbp-item
+					{% for category in product.category.all %}
+					{{category.slug}}
+					{% endfor %}
+					 col-md-3 col-sm-6 with-spacing">
 						<div class="portfolio gallery-image-hover text-center">
 							<div class="folio-overlay"></div>
 							<img src="{{product.image.url}}" alt="">
 							<div class="portfolio-wrap">
 								<div class="portfolio-description">
 									<h3 class="portfolio-title">{{product.name}}</h3>
-									<h6 class="links">Visual Identity</h6>
+									<h6 class="links">{{product.short_description}}</h6>
 								</div>
 								<ul class="portfolio-details">
-									<li><a class="cbp-lightbox" href="{%static 'assets/images/portfolio/grid/12.jpg'%}"><i
-											class="icofont icofont-search"></i></a></li>
-									<li><a href="single-project-page-01.html"><i class="icofont icofont-link"></i></a>
+									<li class="">
+										<a class="cbp-lightbox" href="{{product.image.url}}">
+											<i class="icofont icofont-search"></i>
+										</a>
 									</li>
+									
+									<li>
+										<a href="{% url 'project_page' slug=product.slug pk=product.pk%}">
+											<i class="icofont icofont-link"></i>
+										</a>
+									</li>
+									
 								</ul>
 							</div>
 						</div>
 					</div>
 					{% endfor %}
+					
 					
 					<div class="cbp-item branding col-md-3 col-sm-6 with-spacing">
 						<div class="portfolio gallery-image-hover text-center">
@@ -752,6 +766,7 @@ Hello
 					</div>
 				</div>
 			</div>
+			
 			<!--== Member End ==-->
 			<div class="col-md-3 col-sm-6 col-xs-12 wow fadeInUp" data-wow-delay="0.3s">
 				<div class="team-member-container gallery-image-hover"><img
@@ -774,6 +789,7 @@ Hello
 				</div>
 			</div>
 			<!--== Member End ==-->
+			
 			<div class="col-md-3 col-sm-6 col-xs-12 wow fadeInUp" data-wow-delay="0.4s">
 				<div class="team-member-container gallery-image-hover"><img
 						src="{%static 'assets/images/team/team-04.jpg'%}"
@@ -968,59 +984,101 @@ Hello
 </section>
 <!--== Blog Posts End ==-->
 
-<!--== Contact Form Start ==-->
-<section class="dark-bg pb-30" id="Contact">
-	<div class="container">
-		<div class="row">
-			<div class="col-sm-8 section-heading">
-				<h5 class="default-color text-uppercase">Contact</h5>
-				<h2 class="play-font white-color font-700">Contact form coming soon... <span
-						class="default-color">This service</span> in Develop</h2>
-			</div>
-		</div>
-	
-	</div>
-</section>
-<!--== Contact Form End ==-->
 {% endblock %}
 
-<form action="" method="post" role="form" class="php-email-form">
-	<!--						{{contact_form_in_all_page}}-->
-	<!-- Ошибки не связанныене с полями -->
-	{% for e in contact_form_in_all_page.non_field_errors %}
-	<div class="alert alert-danger">{{e}}</div>
-	{% endfor %}
-	<!-- /Ошибки не связанныене с полями -->
-	
-	<div class="form-row">
-		{% for field in contact_form_in_all_page %}
-		<div class=" form-group col-md-6 {% if field.errors %} alert-danger{% endif %}">
-			<!--Ошибки в поле-->
-			{% if field.errors %}
-			<ol>
-				{% for error in field.errors %}
-				<li>{{error|escape}}</li>
-				{% endfor %}
-			</ol>
-			{% endif %}
-			<!--/Ошибки в поле-->
-			
-			<!--Данные в полях-->
-			<div class="controls">
-				{{ field.label }}
-				{{ field }}
-			</div>
-			<!--/Ошибки в полях-->
-		</div>
-		{% endfor %}
-	</div>
-	
-	{% for hidden in contact_form_in_all_page.hidden_fields %}
-	{{hidden}}
-	{% endfor %}
-	
-	<div class="text-center">
-		<button type="submit">Send Message</button>
-	</div>
 
-</form>
+{% block script %}
+var tpj=jQuery;
+
+var revapi4;
+tpj(document).ready(function() {
+if(tpj("#rev_slider_4_1").revolution == undefined){
+revslider_showDoubleJqueryError("#rev_slider_4_1");
+}else{
+revapi4 = tpj("#rev_slider_4_1").show().revolution({
+sliderType:"standard",
+jsFileLocation:"revolution/js/",
+sliderLayout:"fullscreen",
+dottedOverlay:"none",
+delay:9000,
+particles: {startSlide: "first", endSlide: "last", zIndex: "1",
+particles: {
+number: {value: 80}, color: {value: "#000000"},
+shape: {
+type: "circle", stroke: {width: 0, color: "#ffffff", opacity: 1},
+image: {src: ""}
+},
+opacity: {value: 0.3, random: false, min: 0.25, anim: {enable: false, speed: 3, opacity_min: 0, sync: false}},
+size: {value: 10, random: true, min: 1, anim: {enable: false, speed: 40, size_min: 1, sync: false}},
+line_linked: {enable: true, distance: 200, color: "#000000", opacity: 0.2, width: 1},
+move: {enable: true, speed: 3, direction: "none", random: true, min_speed: 3, straight: false, out_mode: "out"}},
+interactivity: {
+events: {onhover: {enable: true, mode: "bubble"}, onclick: {enable: false, mode: "repulse"}},
+modes: {grab: {distance: 400, line_linked: {opacity: 0.5}}, bubble: {distance: 400, size: 150, opacity: 1}, repulse: {distance: 200}}
+}
+},
+navigation: {
+keyboardNavigation:"off",
+keyboard_direction: "horizontal",
+mouseScrollNavigation:"off",
+mouseScrollReverse:"default",
+onHoverStop:"off",
+arrows: {
+style:"gyges",
+enable:true,
+hide_onmobile:false,
+hide_onleave:false,
+tmp:'',
+left: {
+h_align:"center",
+v_align:"bottom",
+h_offset:-20,
+v_offset:0
+},
+right: {
+h_align:"center",
+v_align:"bottom",
+h_offset:20,
+v_offset:0
+}
+}
+},
+responsiveLevels:[1240,1024,778,480],
+visibilityLevels:[1240,1024,778,480],
+gridwidth:[1240,1024,778,480],
+gridheight:[868,768,960,720],
+lazyType:"none",
+shadow:0,
+spinner:"off",
+stopLoop:"on",
+stopAfterLoops:0,
+stopAtSlide:1,
+shuffle:"off",
+autoHeight:"off",
+fullScreenAutoWidth:"off",
+fullScreenAlignForce:"off",
+fullScreenOffsetContainer: "",
+fullScreenOffset: "60px",
+disableProgressBar:"on",
+hideThumbsOnMobile:"off",
+hideSliderAtLimit:0,
+hideCaptionAtLimit:0,
+hideAllCaptionAtLilmit:0,
+debugMode:false,
+fallbacks: {
+simplifyAll:"off",
+nextSlideOnWindowFocus:"off",
+disableFocusListener:false,
+}
+});
+}
+
+RsParticlesAddOn(revapi4);
+});    /*ready*/
+
+//$('#exampleModalScrollable').on('shown.bs.modal', function () {
+//  $('#myInput').trigger('focus')
+//})
+
+{% endblock %}
+

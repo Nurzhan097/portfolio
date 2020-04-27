@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from . import models
 
 
@@ -12,6 +12,14 @@ def main_page(request):
 		'categories': categories,
 	}
 	return render(request, 'landing/main_page.html', context)
+
+
+def project_page(request, slug, pk):
+	product = get_object_or_404(models.Product, slug=slug, pk=pk)
+	context = {
+		'product': product,
+	}
+	return render(request, 'landing/project_page.html', context)
 
 
 def pages(request, template):
