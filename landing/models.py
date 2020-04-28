@@ -71,11 +71,10 @@ class Contact(models.Model):
 	# desired_contact_method = models.ForeignKey(DesiredContactMethod,
 	# on_delete=models.CASCADE, verbose_name='Предпочитаемый метод связи')
 	desired_contact_method = models.CharField(
-		max_length=10, choices=DESIRED_CONTACT_METHOD, verbose_name='Предпочитаемый метод связи')
+		max_length=10, choices=DESIRED_CONTACT_METHOD, default='email', verbose_name='Предпочитаемый метод связи')
 	products = models.ForeignKey(
-		ProductCategory, on_delete=models.CASCADE, verbose_name='Продукты')
-	message = models.CharField(
-		max_length=13, blank=True, verbose_name='Коментарий')
+		ProductCategory, on_delete=models.CASCADE, verbose_name='Желаемый продукт')
+	message = models.TextField(blank=True, verbose_name='Коментарий')
 
 	status = models.ForeignKey(
 		ContactStatus, on_delete=models.CASCADE, default=None, null=True, verbose_name='Статус заявки')
@@ -116,7 +115,7 @@ class Product(models.Model):
 	name = models.CharField(max_length=40, verbose_name='Название')
 	short_description = models.CharField(max_length=40, verbose_name="Краткое описание")
 	slug = models.SlugField(verbose_name='Краткое название', help_text="Ссылка")
-	category = models.ManyToManyField(ProductCategory)
+	category = models.ManyToManyField(ProductCategory, verbose_name="Категории продуктов")
 	image = models.ImageField(upload_to='site_preview')
 	url = models.URLField()
 
