@@ -15,11 +15,21 @@ git clone https://github.com/Nurzhan097/portfolio.git
 #### создание и активация вирт окружения windows
 <code>
 python -m venv env
+  </code>
+
   <br>
+  <code>
 .\env\Scripts\activate.bat
+  </code>
+
   <br>
+  
+    <code>
 cd portfolio
+</code>
+
   <br>
+      <code>
 pip install -r req.txt
 </code>
 
@@ -27,6 +37,11 @@ pip install -r req.txt
 #### Создание бд и супер пльзователя
 <code>
 manage.py migrate
+  </code>
+
+  <br>
+  <code>
+
 manage.py createsuperuser
 </code>
 
