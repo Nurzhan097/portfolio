@@ -6,6 +6,9 @@ WebStructure
 #### create project folder
 <code>
 mkdir portfolio && cd portfolio
+</code>
+
+<code>
 git clone https://github.com/Nurzhan097/portfolio.git
 </code>
 
