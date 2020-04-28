@@ -50,6 +50,8 @@ def contact_with_us(request):
 			context['message'] = "ЗБС заработало"
 			context['url_scheme'] = request.META['wsgi.url_scheme']  # .wsgi.url_scheme
 			context['HTTP_HOST'] = request.META['HTTP_HOST']  # .wsgi.url_scheme
+
+			# TODO: Сделать нормальные страницы для подтверждения отправки писем
 			is_sended_to_client = send_mail(
 				f'name - {new_contact.name}, ',
 				'hello world!',
@@ -62,11 +64,11 @@ def contact_with_us(request):
 				f'name - {new_contact.name}, ',
 				'hello world!',
 				settings.EMAIL_HOST_USER,
-				[new_contact.email, ],
+				['atar.7@ya.ru', ],
 				fail_silently=False,
 				html_message=get_template('contact_done.html',).render(context),
 			)
-			if is_sended_to_client:
+			if is_sended_to_client and is_sended_to_admin:
 				return render(request, 'contact_done.html', context)
 			else:
 				message = "Mail did't send"
