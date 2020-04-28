@@ -16,20 +16,16 @@ git clone https://github.com/Nurzhan097/portfolio.git
 <code>
 python -m venv env
   </code>
-
   <br>
   <code>
 .\env\Scripts\activate.bat
   </code>
-
   <br>
-  
-    <code>
+<code>
 cd portfolio
 </code>
-
   <br>
-      <code>
+<code>
 pip install -r req.txt
 </code>
 
@@ -38,10 +34,8 @@ pip install -r req.txt
 <code>
 manage.py migrate
   </code>
-
   <br>
   <code>
-
 manage.py createsuperuser
 </code>
 
