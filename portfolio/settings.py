@@ -87,9 +87,9 @@ DATABASES = {
         # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
 
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('DB_NAME'),  #'WebStructure',
-        'USER': os.getenv('DB_USER'),  # 'WebStructure_admin'
-        'PASSWORD': os.getenv('DB_PASSWORD'),  # 'WebStructure_admin!'
+        'NAME': os.getenv('DB_NAME'),
+        'USER': os.getenv('DB_USER'),
+        'PASSWORD': os.getenv('DB_PASSWORD'),
         'HOST': 'localhost',
         'PORT': '5432',
 
