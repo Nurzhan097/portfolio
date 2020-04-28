@@ -7,7 +7,7 @@ WebStructure
 <code>
 mkdir portfolio && cd portfolio
 </code>
-
+<br>
 <code>
 git clone https://github.com/Nurzhan097/portfolio.git
 </code>
@@ -15,8 +15,11 @@ git clone https://github.com/Nurzhan097/portfolio.git
 #### создание и активация вирт окружения windows
 <code>
 python -m venv env
+  <br>
 .\env\Scripts\activate.bat
+  <br>
 cd portfolio
+  <br>
 pip install -r req.txt
 </code>
 
